@@ -10,53 +10,65 @@ function SouthHarmonReplacementRule() {
 
 util.inherits(SouthHarmonReplacementRule, ReplacementRule);
 
-SouthHarmonReplacementRule.prototype.replace = function(coursesAfterClassify, passSocialPractices) {
+SouthHarmonReplacementRule.prototype._replaceNotPassCourses = function(studiedSocialPracticesCanReplacement, notPassCourses) {
 
-    // TODO more level
-
-    var notPassStudiedCourses                = _.cloneDeep(coursesAfterClassify.notPass);
-    var passStudiedCourses                   = _.cloneDeep(coursesAfterClassify.pass);
-    var studiedSocialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
-    
-    var studiedCoursesAfterReplace                 = [];
-    var convertedSocialPractices                   = [];
     var convertedSocialPracticesWithCreditIncrease = [];
-
     for (var i = 0; i < studiedSocialPracticesCanReplacement.length; i++) {
-        for (var j = 0; j < notPassStudiedCourses.length; j++) {
+        for (var j = 0; j < notPassCourses.length; j++) {
 
-            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === notPassStudiedCourses[j].id) {
+            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === notPassCourses[j].id) {
 
-                notPassStudiedCourses[j].score = passSocialPractices[i].score;
+                notPassCourses[j].score = studiedSocialPracticesCanReplacement[i].score;
                 convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(studiedSocialPracticesCanReplacement[i]));
                 studiedSocialPracticesCanReplacement.splice(i, 1);
             }
         }
     }
 
-    for (var i = 0, studiedSocialPracticesCanReplacementLength = studiedSocialPracticesCanReplacement.length ; i < studiedSocialPracticesCanReplacementLength; i++) {
-        for (var j = 0, passStudiedCoursesLength = passStudiedCourses.length; j < passStudiedCoursesLength; j++) {
+    return convertedSocialPracticesWithCreditIncrease;
+};
 
-            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === passStudiedCourses[j].id
-                && passStudiedCourses[j].score > passStudiedCourses[j].score ) {
+SouthHarmonReplacementRule.prototype._replacePassCourses = function(socialPracticesCanReplacement, passCourses, convertedSocialPractices, convertedSocialPracticesWithCreditIncrease) {
 
-                passStudiedCourses[j].score = passSocialPractices[i].score;
-                convertedSocialPractices.push(_.cloneDeep(passSocialPractices[i]));
+    for (var i = 0, socialPracticesCanReplacementLength = socialPracticesCanReplacement.length; i < socialPracticesCanReplacementLength; i++) {
+        for (var j = 0, passCoursesLength = passCourses.length; j < passCoursesLength; j++) {
+
+            if (socialPracticesCanReplacement[i].replaceableCourse.id === passCourses[j].id
+                && passCourses[j].score > passCourses[j].score) {
+
+                passCourses[j].score = socialPracticesCanReplacement[i].score;
+                convertedSocialPractices.push(_.cloneDeep(socialPracticesCanReplacement[i]));
                 break;
             }
 
-            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id !== passStudiedCourses[j].id && j === passStudiedCoursesLength - 1) {
+            if (socialPracticesCanReplacement[i].replaceableCourse.id !== passCourses[j].id && j === passCoursesLength - 1) {
 
-                var newAddedCourse   = _.clone(studiedSocialPracticesCanReplacement[i].replaceableCourse);
-                newAddedCourse.score = studiedSocialPracticesCanReplacement[i].score;
+                var newAddedCourse = _.clone(socialPracticesCanReplacement[i].replaceableCourse);
+                newAddedCourse.score = socialPracticesCanReplacement[i].score;
 
-                passStudiedCourses.push(newAddedCourse);
-                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(studiedSocialPracticesCanReplacement[i]));
+                passCourses.push(newAddedCourse);
+                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(socialPracticesCanReplacement[i]));
             }
         }
     }
+};
+SouthHarmonReplacementRule.prototype.replace = function(coursesAfterClassify, passSocialPractices) {
 
-    studiedCoursesAfterReplace = passStudiedCourses.concat(notPassStudiedCourses);
+    // TODO more level
+
+    var notPassCourses                = _.cloneDeep(coursesAfterClassify.notPass);
+    var passCourses                   = _.cloneDeep(coursesAfterClassify.pass);
+    var socialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
+    
+    var studiedCoursesAfterReplace                 = [];
+    var convertedSocialPractices                   = [];
+    var convertedSocialPracticesWithCreditIncrease = [];
+
+    convertedSocialPracticesWithCreditIncrease = this._replaceNotPassCourses(socialPracticesCanReplacement, notPassCourses);
+
+    this._replacePassCourses(socialPracticesCanReplacement, passCourses, convertedSocialPractices, convertedSocialPracticesWithCreditIncrease);
+
+    studiedCoursesAfterReplace = passCourses.concat(notPassCourses);
 
 
     return {
