@@ -1,0 +1,15 @@
+{
+  "name": "student-credit-manage",
+  "version": "1.0.0",
+  "description": "student credit manage",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "aikin",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
