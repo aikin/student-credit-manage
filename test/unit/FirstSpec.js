@@ -1,4 +1,4 @@
-var should   = require('chai').should();
+var should = require('chai').should();
 
 describe('Array and String', function(){
     describe('#index Of', function(){
