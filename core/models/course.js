@@ -1,6 +1,7 @@
-function Course(courseId, credit, type, passLine) {
+function Course(courseId, courseName, credit, type, passLine) {
 
-    this.Id       = courseId;
+    this.id       = courseId;
+    this.name     = courseName;
     this.credit   = credit;
     this.type     = type;
     this.passLine = passLine;

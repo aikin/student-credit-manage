@@ -1,6 +1,7 @@
-function SocialPractice(socialPracticeId, replaceableCourse, passLine) {
+function SocialPractice(socialPracticeId, socialPracticeName, replaceableCourse, passLine) {
 
     this.id                = socialPracticeId;
+    this.name              = socialPracticeName;
     this.replaceableCourse = replaceableCourse;
     this.passLine          = passLine;
 }
