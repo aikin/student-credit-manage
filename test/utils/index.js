@@ -1,3 +1,3 @@
 module.exports = {
-    dataGiven: require('builder/dataGiven')
+    dataGiven: require('./builder/dataGiven')
 };
