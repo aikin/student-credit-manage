@@ -25,4 +25,14 @@ Transcript.prototype.fetchCourseCredits = function(allCourses) {
     return courseCredits;
 };
 
+Transcript.prototype.fetchAverageScore = function() {
+
+    var sum = 0;
+    for (var i = 0, max = this.studiedCourses.length; i < max; i++) {
+        sum += this.studiedCourses[i].score;
+    }
+
+    return sum / this.studiedCourses.length;
+};
+
 module.exports = Transcript;

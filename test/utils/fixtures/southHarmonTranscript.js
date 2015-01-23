@@ -3,12 +3,12 @@ module.exports = {
     studiedCourses         : [
         {
             courseId : 'C110',
-            score    : 70
+            score    : 80
         },
         
         {
             courseId : 'C113',
-            score    : 56
+            score    : 50
         },
 
         {

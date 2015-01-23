@@ -23,7 +23,7 @@ describe('transcript test', function() {
     });
 
 
-    it('should fetch correct studied course credits', function() {
+    it('should fetch correct  credits of studied courses', function() {
 
         var transcript = new Transcript(
 
@@ -33,5 +33,17 @@ describe('transcript test', function() {
         );
 
         transcript.fetchCourseCredits(allCourses).should.eql({ obligatory: 4, elective: 2 });
+    });
+
+    it('should fetch correct average score of studied courses', function() {
+
+        var transcript = new Transcript(
+
+            southHarmonTranscript.college,
+            southHarmonTranscript.studiedCourses,
+            southHarmonTranscript.studiedSocialPractices
+        );
+
+        transcript.fetchAverageScore().should.eql(70);
     });
 });
