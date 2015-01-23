@@ -35,4 +35,8 @@ Transcript.prototype.fetchAverageScore = function() {
     return sum / this.studiedCourses.length;
 };
 
+Transcript.prototype.fetchConvertedSocialPracticeCredits = function() {
+    return { obligatory: 2, elective: 2 };
+};
+
 module.exports = Transcript;

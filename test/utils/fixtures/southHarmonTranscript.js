@@ -20,6 +20,11 @@ module.exports = {
         {
             socialPracticeId : 'SP110',
             score            : 70
+        },
+
+        {
+            socialPracticeId : 'SP112',
+            score            : 90
         }
     ]
 };

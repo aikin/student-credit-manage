@@ -10,8 +10,8 @@ describe('transcript test', function() {
 
     beforeEach(function() {
 
-        allCourses = testUtils.dataGiven.courses;
-        allSocialPractices = testUtils.dataGiven.socialPractices;
+        allCourses            = testUtils.dataGiven.courses;
+        allSocialPractices    = testUtils.dataGiven.socialPractices;
         southHarmonTranscript = testUtils.dataGiven.southHarmonTranscript;
     });
 
@@ -45,5 +45,17 @@ describe('transcript test', function() {
         );
 
         transcript.fetchAverageScore().should.eql(70);
+    });
+
+    it('should fetch correct converted credits of studied social practices ', function() {
+
+        var transcript = new Transcript(
+
+            southHarmonTranscript.college,
+            southHarmonTranscript.studiedCourses,
+            southHarmonTranscript.studiedSocialPractices
+        );
+
+        transcript.fetchConvertedSocialPracticeCredits(allSocialPractices).should.eql({ obligatory: 2, elective: 2 });
     });
 });

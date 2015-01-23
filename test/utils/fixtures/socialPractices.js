@@ -16,7 +16,7 @@ module.exports = [
     {
         socialPracticeId   : 'SP112',
         socialPracticeName : '实践3',
-        replaceableCourse  : 'C112',
+        replaceableCourse  : 'C111',
         passLine           : 60
     }
 ];
