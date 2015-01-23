@@ -4,11 +4,22 @@ var Transcript = require('../../../core/models/Transcript');
 
 describe('transcript test', function() {
 
+    var allCourses;
+    var allSocialPractices;
     var southHarmonTranscript;
 
     beforeEach(function() {
 
+        allCourses = testUtils.dataGiven.courses;
+        allSocialPractices = testUtils.dataGiven.socialPractices;
         southHarmonTranscript = testUtils.dataGiven.southHarmonTranscript;
+    });
+
+    afterEach(function() {
+
+        allCourses            = null;
+        allSocialPractices    = null;
+        southHarmonTranscript = null;
     });
 
 
@@ -21,6 +32,6 @@ describe('transcript test', function() {
             southHarmonTranscript.studiedSocialPractices
         );
 
-        transcript.fetchCourseCredits().should.eql({ obligatory: 4, elective: 2 });
+        transcript.fetchCourseCredits(allCourses).should.eql({ obligatory: 4, elective: 2 });
     });
 });
