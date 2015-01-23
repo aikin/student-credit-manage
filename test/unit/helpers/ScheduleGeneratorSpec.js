@@ -2,7 +2,7 @@ var should            = require('chai').should();
 var testUtils         = require('../../utils');
 var ScheduleGenerator = require('../../../core/helpers/ScheduleGenerator');
 
-describe('academic schedule generator test', function() {
+describe('schedule generator test', function() {
 
     var southHarmonScheduleData;
     var college;
@@ -27,7 +27,17 @@ describe('academic schedule generator test', function() {
 
     it('should return correct south harmon schedule', function() {
 
-        var scheduleGenerator = new ScheduleGenerator(college, courseCredits, convertedSocialPracticeCredits, totalCredits, shortageCredits, averageBaseline, averageScore);
+        var scheduleGenerator = new ScheduleGenerator(
+
+            college,
+            courseCredits,
+            convertedSocialPracticeCredits,
+            totalCredits,
+            shortageCredits,
+            averageBaseline,
+            averageScore
+        );
+
         var expectSchedule    =
 
                 '***<南哈蒙理工大学>学分明细***' +

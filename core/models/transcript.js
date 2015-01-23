@@ -1,8 +1,6 @@
-function Transcript(college, studentId, studentName, studiedCourses, studiedSocialPractices) {
+function Transcript(college, studiedCourses, studiedSocialPractices) {
 
     this.college                = college;
-    this.studentId              = studentId;
-    this.studentName            = studentName;
     this.studiedCourses         = studiedCourses;
     this.studiedSocialPractices = studiedSocialPractices;
 }
