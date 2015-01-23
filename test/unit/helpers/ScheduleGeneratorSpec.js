@@ -4,6 +4,8 @@ var ScheduleGenerator = require('../../../core/helpers/ScheduleGenerator');
 
 describe('academic schedule generator test', function() {
 
+    var southHarmonScheduleData;
+    var college;
     var courseCredits;
     var convertedSocialPracticeCredits;
     var totalCredits;
@@ -13,11 +15,19 @@ describe('academic schedule generator test', function() {
 
     before(function() {
 
+        southHarmonScheduleData        = testUtils.dataGiven.southHarmonSchedule;
+        college                        = southHarmonScheduleData.college;
+        courseCredits                  = southHarmonScheduleData.courseCredits;
+        convertedSocialPracticeCredits = southHarmonScheduleData.convertedSocialPracticeCredits;
+        totalCredits                   = southHarmonScheduleData.totalCredits;
+        shortageCredits                = southHarmonScheduleData.shortageCredits;
+        averageBaseline                = southHarmonScheduleData.averageBaseline;
+        averageScore                   = southHarmonScheduleData.averageScore;
     });
 
-    it('should return correct result about studied courses credit', function() {
+    it('should return correct south harmon schedule', function() {
 
-        var scheduleGenerator = new ScheduleGenerator(courseCredits, convertedSocialPracticeCredits, totalCredits, shortageCredits, averageBaseline, averageScore);
+        var scheduleGenerator = new ScheduleGenerator(college, courseCredits, convertedSocialPracticeCredits, totalCredits, shortageCredits, averageBaseline, averageScore);
         var expectSchedule    =
 
                 '***<南哈蒙理工大学>学分明细***' +
@@ -32,6 +42,9 @@ describe('academic schedule generator test', function() {
                 '----------------------' +
                 '已获得的总学分：' +
                 '必修：14' +
+                '选修：4' +
+                '离顺利毕业还差学分：' +
+                '必修：26' +
                 '选修：16' +
                 '----------------------' +
                 '顺利毕业的所有课程平均分基线：70' +
@@ -41,6 +54,8 @@ describe('academic schedule generator test', function() {
         scheduleGenerator.generate().should.eql(expectSchedule);
     });
 });
+
+
 
 
 /*

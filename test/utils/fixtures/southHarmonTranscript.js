@@ -1,5 +1,5 @@
 module.exports = {
-    college                : 'Harmon',
+    college                : 'South Harmon',
     studentId              : '410',
     studentName            : 'node',
     studiedCourses         : [
