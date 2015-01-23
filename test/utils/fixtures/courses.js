@@ -10,7 +10,7 @@ module.exports = [
     {
         courseId   : 'C111',
         courseName : '课程B',
-        credit     : 4,
+        credit     : 2,
         type       : 'elective',
         passLine   : 60
     },
@@ -27,7 +27,7 @@ module.exports = [
         courseId   : 'C113',
         courseName : '课程D',
         credit     : 2,
-        type       : 'elective',
+        type       : 'obligatory',
         passLine   : 60
     },
 
@@ -42,7 +42,7 @@ module.exports = [
     {
         courseId   : 'C115',
         courseName : '课程F',
-        credit     : 2,
+        credit     : 4,
         type       : 'obligatory',
         passLine   : 60
     }
