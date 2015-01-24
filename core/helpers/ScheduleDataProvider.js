@@ -8,7 +8,7 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(studiedCourses, all
 
         for (var j = 0; j < allCourses.length; j++) {
 
-            if (studiedCourses[i].courseId === allCourses[j].courseId
+            if (studiedCourses[i].id === allCourses[j].id
                 && studiedCourses[i].score >= allCourses[j].passLine) {
 
                 if (!courseCredits[allCourses[j].type]) {
@@ -38,7 +38,7 @@ ScheduleDataProvider.prototype.fetchConvertedSocialPracticeCredits = function(re
     for (var i = 0, max = studiedSocialPractices.length; i < max; i++) {
 
         for (var j = 0, practicesLength = allSocialPractices.length; j < practicesLength; j++) {
-            if (studiedSocialPractices[i].socialPracticeId === allSocialPractices[j].socialPracticeId
+            if (studiedSocialPractices[i].id === allSocialPractices[j].id
                 && studiedSocialPractices[i].score >= allSocialPractices[j].passLine) {
 
                 // TODO 根据置换规则获取折算后的社会实践学分

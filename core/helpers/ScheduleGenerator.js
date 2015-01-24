@@ -12,9 +12,7 @@ function ScheduleGenerator(college, courseCredits, convertedSocialPracticeCredit
 
 ScheduleGenerator.prototype.generate = function() {
 
-    var expectSchedule =
-
-            '***<' + this.college + '>学分明细***' +
+     return '***<' + this.college + '>学分明细***' +
             '----------------------' +
             '已修课程学分：' +
             '必修：' + this.courseCredits.obligatory +
@@ -34,7 +32,6 @@ ScheduleGenerator.prototype.generate = function() {
             '顺利毕业的所有课程平均分基线：' + this.averageBaseline +
             '当前所有课程平均分：' + this.averageScore +
             '**********************';
-    return expectSchedule;
 };
 
 module.exports = ScheduleGenerator;
