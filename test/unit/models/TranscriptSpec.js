@@ -2,7 +2,7 @@ var should     = require('chai').should();
 var testUtils  = require('../../utils/index');
 var Transcript = require('../../../core/models/Transcript');
 
-describe('transcript test', function() {
+xdescribe('transcript test', function() {
 
     var allCourses;
     var allSocialPractices;
