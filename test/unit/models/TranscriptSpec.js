@@ -1,6 +1,6 @@
 var should     = require('chai').should();
 var testUtils  = require('../../utils/index');
-var Transcript = require('../../../core/models/Transcript');
+//var Transcript = require('../../../core/models/Transcript');
 
 xdescribe('transcript test', function() {
 
