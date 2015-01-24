@@ -41,6 +41,7 @@ ScheduleDataProvider.prototype.fetchConvertedSocialPracticeCredits = function(re
             if (studiedSocialPractices[i].socialPracticeId === allSocialPractices[j].socialPracticeId
                 && studiedSocialPractices[i].score >= allSocialPractices[j].passLine) {
 
+                // TODO 根据置换规则获取折算后的社会实践学分
             }
         }
     }
