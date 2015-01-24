@@ -35,7 +35,19 @@ Transcript.prototype.fetchAverageScore = function() {
     return sum / this.studiedCourses.length;
 };
 
-Transcript.prototype.fetchConvertedSocialPracticeCredits = function() {
+Transcript.prototype.fetchConvertedSocialPracticeCredits = function(replacementRule, allCourses, allSocialPractices) {
+
+    var convertedSocialPracticeCredits = {};
+
+    for (var i = 0, max = this.studiedSocialPractices.length; i < max; i++) {
+
+        for (var j = 0, practicesLength = allSocialPractices.length; j < practicesLength; j++) {
+            if (this.studiedSocialPractices[i].socialPracticeId === allSocialPractices[j].socialPracticeId
+                && this.studiedSocialPractices[i].score >= allSocialPractices[j].passLine) {
+            }
+        }
+    }
+//    return convertedSocialPracticeCredits;
     return { obligatory: 2, elective: 2 };
 };
 

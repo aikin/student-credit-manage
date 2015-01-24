@@ -1,5 +1,5 @@
 var should     = require('chai').should();
-var testUtils  = require('../../utils');
+var testUtils  = require('../../utils/index');
 var Transcript = require('../../../core/models/Transcript');
 
 describe('transcript test', function() {
@@ -56,6 +56,17 @@ describe('transcript test', function() {
             southHarmonTranscript.studiedSocialPractices
         );
 
-        transcript.fetchConvertedSocialPracticeCredits(allSocialPractices).should.eql({ obligatory: 2, elective: 2 });
+        // mock SouthHarmonReplacementRule
+        function SouthHarmonReplacementRule() {}
+        SouthHarmonReplacementRule.prototype.replace = function() {};
+
+        // mock ReplacementRuleFactory
+        function ReplacementRuleFactory() {}
+        ReplacementRuleFactory.create = function(college) { return new SouthHarmonReplacementRule() };
+
+
+        var replacementRule = ReplacementRuleFactory.create(transcript.college);
+
+        transcript.fetchConvertedSocialPracticeCredits(replacementRule, allCourses, allSocialPractices).should.eql({ obligatory: 2, elective: 2 });
     });
 });
