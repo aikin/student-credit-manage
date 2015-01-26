@@ -27,36 +27,19 @@ TranscriptWrapper.prototype.fetchDetailStudiedCourses = function() {
 
 TranscriptWrapper.prototype.fetchDetailStudiedPractices = function() {
 
-    var expectResult = [
-        {
-            id: 'SP110',
-            name: '实践1',
-            replaceableCourse: {
-                id       : 'C115',
-                name     : '课程F',
-                credit   : 4,
-                type     : 'obligatory',
-                passLine : 60
-            },
-            passLine: 60,
-            score: 70
-        },
-        {
-            id: 'SP112',
-            name: '实践3',
-            replaceableCourse: {
-                id       : 'C110',
-                name     : '课程A',
-                credit   : 2,
-                type     : 'elective',
-                passLine : 60
-            },
-            passLine: 60,
-            score: 90
-        }
-    ];
+    var detailStudiedSocialPractices = [];
 
-    return expectResult;
+    for (var i = 0, max = this.studiedSocialPractices.length; i < max; i++) {
+        for (var j = 0, allSocialPracticesLength = this.allSocialPractices.length; j < allSocialPracticesLength; j++) {
+            if (this.studiedSocialPractices[i].id === this.allSocialPractices[j].id) {
+
+                var studiedSocialPractice   = _.clone(this.allSocialPractices[j]);
+                studiedSocialPractice.score = this.studiedSocialPractices[i].score;
+                detailStudiedSocialPractices.push(studiedSocialPractice);
+            }
+        }
+    }
+    return detailStudiedSocialPractices;
 };
 
 module.exports = TranscriptWrapper;

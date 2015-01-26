@@ -25,6 +25,8 @@ describe('transcript wrapper', function() {
 
     it('should fetch correct structure studiedCourses after wrapper', function() {
 
+
+
         var transcriptWrapper = new TranscriptWrapper(
 
             southHarmonTranscript.studiedCourses,
@@ -77,30 +79,18 @@ describe('transcript wrapper', function() {
 
         var expectResult = [
             {
-                id: 'SP110',
-                name: '实践1',
-                replaceableCourse: {
-                    id       : 'C115',
-                    name     : '课程F',
-                    credit   : 4,
-                    type     : 'obligatory',
-                    passLine : 60
-                },
-                passLine: 60,
-                score: 70
+                id                : 'SP110',
+                name              : '实践1',
+                replaceableCourse : 'C115',
+                passLine          : 60,
+                score             : 70
             },
             {
-                id: 'SP112',
-                name: '实践3',
-                replaceableCourse: {
-                    id       : 'C110',
-                    name     : '课程A',
-                    credit   : 2,
-                    type     : 'elective',
-                    passLine : 60
-                },
-                passLine: 60,
-                score: 90
+                id                : 'SP112',
+                name              : '实践3',
+                replaceableCourse : 'C111',
+                passLine          : 60,
+                score             : 90
             }
         ];
 
