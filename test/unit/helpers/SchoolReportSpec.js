@@ -1,25 +1,25 @@
-var should      = require('chai').should();
-var testUtils   = require('../../utils');
-var Transcript  = require('../../../core/models/Transcript.js');
+var should        = require('chai').should();
+var testUtils     = require('../../utils');
+var SchoolReport  = require('../../../core/models/SchoolReport');
 
-describe('transcript spec', function() {
+describe('SchoolReport spec', function() {
 
     var allCourses;
     var allSocialPractices;
-    var southHarmonTranscript;
+    var southHarmonSchoolReport;
 
     beforeEach(function() {
 
-        allCourses            = testUtils.dataGiven.courses;
-        allSocialPractices    = testUtils.dataGiven.socialPractices;
-        southHarmonTranscript = testUtils.dataGiven.southHarmonTranscript;
+        allCourses              = testUtils.dataGiven.courses;
+        allSocialPractices      = testUtils.dataGiven.socialPractices;
+        southHarmonSchoolReport = testUtils.dataGiven.southHarmonSchoolReport;
     });
 
     afterEach(function() {
 
-        allCourses            = null;
-        allSocialPractices    = null;
-        southHarmonTranscript = null;
+        allCourses              = null;
+        allSocialPractices      = null;
+        southHarmonSchoolReport = null;
     });
 
 
@@ -57,16 +57,15 @@ describe('transcript spec', function() {
             return expectResult;
         };
 
-        var dataWrapper = new DataWrapper();
+        var dataWrapper  = new DataWrapper();
+        var schoolReport = new SchoolReport(
 
-        var transcript = new Transcript(
-
-            southHarmonTranscript.college,
-            southHarmonTranscript.studiedCourses,
-            southHarmonTranscript.studiedSocialPractices
+            southHarmonSchoolReport.college,
+            southHarmonSchoolReport.studiedCourses,
+            southHarmonSchoolReport.studiedSocialPractices
         );
 
-        transcript
+        schoolReport
             .fetchStudiedCoursesAfterWrapper(dataWrapper, allCourses)
             .should.eql(expectResult);
     });
@@ -95,16 +94,15 @@ describe('transcript spec', function() {
             return expectResult;
         };
 
-        var dataWrapper = new DataWrapper();
+        var dataWrapper  = new DataWrapper();
+        var schoolReport = new SchoolReport(
 
-        var transcript = new Transcript(
-
-            southHarmonTranscript.college,
-            southHarmonTranscript.studiedCourses,
-            southHarmonTranscript.studiedSocialPractices
+            southHarmonSchoolReport.college,
+            southHarmonSchoolReport.studiedCourses,
+            southHarmonSchoolReport.studiedSocialPractices
         );
 
-        transcript
+        schoolReport
             .fetchStudiedSocialPracticesAfterWrapper(dataWrapper, allSocialPractices)
             .should.eql(expectResult);
     });

@@ -10,7 +10,7 @@ describe('data  wrapper spec', function() {
     beforeEach(function() {
 
         allCourses     = testUtils.dataGiven.courses;
-        studiedCourses = testUtils.dataGiven.southHarmonTranscript.studiedCourses;
+        studiedCourses = testUtils.dataGiven.southHarmonSchoolReport.studiedCourses;
     });
 
     afterEach(function() {

@@ -6,20 +6,20 @@ describe('schedule data provider test', function() {
 
     var allCourses;
     var allSocialPractices;
-    var southHarmonTranscript;
+    var southHarmonSchoolReport;
 
     beforeEach(function() {
 
-        allCourses            = testUtils.dataGiven.courses;
-        allSocialPractices    = testUtils.dataGiven.socialPractices;
-        southHarmonTranscript = testUtils.dataGiven.southHarmonTranscript;
+        allCourses              = testUtils.dataGiven.courses;
+        allSocialPractices      = testUtils.dataGiven.socialPractices;
+        southHarmonSchoolReport = testUtils.dataGiven.southHarmonSchoolReport;
     });
 
     afterEach(function() {
 
-        allCourses            = null;
-        allSocialPractices    = null;
-        southHarmonTranscript = null;
+        allCourses              = null;
+        allSocialPractices      = null;
+        southHarmonSchoolReport = null;
     });
 
 
@@ -28,7 +28,7 @@ describe('schedule data provider test', function() {
         var scheduleDataProvider = new ScheduleDataProvider();
 
         scheduleDataProvider
-            .fetchCourseCredits(southHarmonTranscript.studiedCourses, allCourses)
+            .fetchCourseCredits(southHarmonSchoolReport.studiedCourses, allCourses)
             .should.eql({ obligatory: 4, elective: 2 });
     });
 
@@ -37,7 +37,7 @@ describe('schedule data provider test', function() {
         var scheduleDataProvider = new ScheduleDataProvider();
 
         scheduleDataProvider
-            .fetchAverageScore(southHarmonTranscript.studiedCourses)
+            .fetchAverageScore(southHarmonSchoolReport.studiedCourses)
             .should.eql(70);
     });
 
@@ -54,15 +54,15 @@ describe('schedule data provider test', function() {
         };
 
 
-        var replacementRule      = ReplacementRuleFactory.create(southHarmonTranscript.college);
+        var replacementRule      = ReplacementRuleFactory.create(southHarmonSchoolReport.college);
         var scheduleDataProvider = new ScheduleDataProvider();
 
         // TODO have to extract data packager
         scheduleDataProvider
             .fetchConvertedSocialPracticeCredits(
                 replacementRule,
-                southHarmonTranscript.studiedCourses,
-                southHarmonTranscript.studiedSocialPractices,
+                southHarmonSchoolReport.studiedCourses,
+                southHarmonSchoolReport.studiedSocialPractices,
                 allCourses,
                 allSocialPractices )
             .should.eql({ obligatory: 2, elective: 2 });

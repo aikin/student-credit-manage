@@ -1,17 +1,17 @@
-function Transcript(college, studiedCourses, studiedSocialPractices) {
+function SchoolReport(college, studiedCourses, studiedSocialPractices) {
 
     this.college                = college;
     this.studiedCourses         = studiedCourses;
     this.studiedSocialPractices = studiedSocialPractices;
 }
 
-module.exports = Transcript;
 
-
-Transcript.prototype.fetchStudiedCoursesAfterWrapper = function(dataWrapper, allCourses) {
+SchoolReport.prototype.fetchStudiedCoursesAfterWrapper = function(dataWrapper, allCourses) {
     return dataWrapper.wrapperObjectWithDetail(this.studiedCourses, allCourses);
 };
 
-Transcript.prototype.fetchStudiedSocialPracticesAfterWrapper = function(dataWrapper, allSocialPractices) {
+SchoolReport.prototype.fetchStudiedSocialPracticesAfterWrapper = function(dataWrapper, allSocialPractices) {
     return dataWrapper.wrapperObjectWithDetail(this.studiedSocialPractices, allSocialPractices);
 };
+
+module.exports = SchoolReport;
