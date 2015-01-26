@@ -1,24 +1,22 @@
 function ScheduleDataProvider() {
 }
 
-ScheduleDataProvider.prototype.fetchCourseCredits = function(studiedCourses, allCourses) {
+ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourses) {
+
 
     var courseCredits = {};
-    for (var i = 0, max = studiedCourses.length; i < max; i++) {
 
-        for (var j = 0; j < allCourses.length; j++) {
+    for (var i = 0, max = detailStudiedCourses.length; i < max; i++) {
+        if (detailStudiedCourses[i].score >= detailStudiedCourses[i].passLine) {
 
-            if (studiedCourses[i].id === allCourses[j].id
-                && studiedCourses[i].score >= allCourses[j].passLine) {
-
-                if (!courseCredits[allCourses[j].type]) {
-                    courseCredits[allCourses[j].type] = 0;
-                }
-                courseCredits[allCourses[j].type] += allCourses[j].credit;
-            }
+            courseCredits[detailStudiedCourses[i].type]
+                = courseCredits[detailStudiedCourses[i].type] !== undefined
+                ? courseCredits[detailStudiedCourses[i].type] + detailStudiedCourses[i].credit
+                : 0 + detailStudiedCourses[i].credit;
         }
     }
     return courseCredits;
+
 };
 
 ScheduleDataProvider.prototype.fetchAverageScore = function(studiedCourses) {

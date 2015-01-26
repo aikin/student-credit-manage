@@ -23,12 +23,39 @@ describe('schedule data provider spec', function() {
     });
 
 
-    it('should fetch correct  credits of studied courses', function() {
+    it('should fetch correct credits of studied courses', function() {
 
         var scheduleDataProvider = new ScheduleDataProvider();
 
+        var studiedCoursesAfterWrapper = [
+            {
+                id       : 'C110',
+                name     : '课程A',
+                credit   : 2,
+                type     : 'elective',
+                passLine : 60,
+                score    : 80
+            },
+            {
+                id       : 'C113',
+                name     : '课程D',
+                credit   : 2,
+                type     : 'obligatory',
+                passLine : 60,
+                score    : 50
+            },
+            {
+                id       : 'C114',
+                name     : '课程E',
+                credit   : 4,
+                type     : 'obligatory',
+                passLine : 60,
+                score    : 80
+            }
+        ];
+
         scheduleDataProvider
-            .fetchCourseCredits(southHarmonSchoolReport.studiedCourses, allCourses)
+            .fetchCourseCredits(studiedCoursesAfterWrapper)
             .should.eql({ obligatory: 4, elective: 2 });
     });
 
