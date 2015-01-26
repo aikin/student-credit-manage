@@ -1,26 +1,29 @@
 var should      = require('chai').should();
 var testUtils   = require('../../utils');
-var DataWrapper = require('../../../core/helpers/DataWrapper');
+var Transcript  = require('../../../core/models/Transcript');
 
-describe('data  wrapper spec', function() {
+describe('transcript spec', function() {
 
     var allCourses;
-    var studiedCourses;
+    var allSocialPractices;
+    var southHarmonTranscript;
 
     beforeEach(function() {
 
-        allCourses     = testUtils.dataGiven.courses;
-        studiedCourses = testUtils.dataGiven.southHarmonTranscript.studiedCourses;
+        allCourses            = testUtils.dataGiven.courses;
+        allSocialPractices    = testUtils.dataGiven.socialPractices;
+        southHarmonTranscript = testUtils.dataGiven.southHarmonTranscript;
     });
 
     afterEach(function() {
 
-        allCourses     = null;
-        studiedCourses = null;
+        allCourses            = null;
+        allSocialPractices    = null;
+        southHarmonTranscript = null;
     });
 
-    it('should return correct structure studiedCourses after wrapper', function() {
 
+    it('should fetch correct  credits of studied courses', function() {
 
         var expectResult = [
             {
@@ -49,10 +52,22 @@ describe('data  wrapper spec', function() {
             }
         ];
 
+        function DataWrapper() {}
+        DataWrapper.prototype.wrapperObjectWithDetail = function(resealedData, dependData) {
+            return expectResult;
+        };
+
         var dataWrapper = new DataWrapper();
 
-        dataWrapper
-            .wrapperObjectWithDetail(studiedCourses, allCourses)
+        var transcript = new Transcript(
+
+            southHarmonTranscript.college,
+            southHarmonTranscript.studiedCourses,
+            southHarmonTranscript.studiedSocialPractices
+        );
+
+        transcript
+            .fetchStudiedCoursesAfterWrapper(dataWrapper, allCourses)
             .should.eql(expectResult);
     });
 

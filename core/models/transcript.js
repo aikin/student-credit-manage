@@ -6,3 +6,8 @@ function Transcript(college, studiedCourses, studiedSocialPractices) {
 }
 
 module.exports = Transcript;
+
+
+Transcript.prototype.fetchStudiedCoursesAfterWrapper = function(dataWrapper, allCourses) {
+    return dataWrapper.wrapperObjectWithDetail(this.studiedCourses, allCourses);
+};
