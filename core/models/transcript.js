@@ -11,3 +11,7 @@ module.exports = Transcript;
 Transcript.prototype.fetchStudiedCoursesAfterWrapper = function(dataWrapper, allCourses) {
     return dataWrapper.wrapperObjectWithDetail(this.studiedCourses, allCourses);
 };
+
+Transcript.prototype.fetchStudiedSocialPracticesAfterWrapper = function(dataWrapper, allSocialPractices) {
+    return dataWrapper.wrapperObjectWithDetail(this.studiedSocialPractices, allSocialPractices);
+};

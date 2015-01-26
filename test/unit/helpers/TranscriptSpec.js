@@ -1,6 +1,6 @@
 var should      = require('chai').should();
 var testUtils   = require('../../utils');
-var Transcript  = require('../../../core/models/Transcript');
+var Transcript  = require('../../../core/models/Transcript.js');
 
 describe('transcript spec', function() {
 
@@ -68,6 +68,44 @@ describe('transcript spec', function() {
 
         transcript
             .fetchStudiedCoursesAfterWrapper(dataWrapper, allCourses)
+            .should.eql(expectResult);
+    });
+
+    it('should fetch correct  credits of studied courses', function() {
+
+        var expectResult = [
+            {
+                id                : 'SP110',
+                name              : '实践1',
+                replaceableCourse : 'C115',
+                passLine          : 60,
+                score             : 70
+            },
+            {
+                id                : 'SP112',
+                name              : '实践3',
+                replaceableCourse : 'C111',
+                passLine          : 60,
+                score             : 90
+            }
+        ];
+
+        function DataWrapper() {}
+        DataWrapper.prototype.wrapperObjectWithDetail = function(resealedData, dependData) {
+            return expectResult;
+        };
+
+        var dataWrapper = new DataWrapper();
+
+        var transcript = new Transcript(
+
+            southHarmonTranscript.college,
+            southHarmonTranscript.studiedCourses,
+            southHarmonTranscript.studiedSocialPractices
+        );
+
+        transcript
+            .fetchStudiedSocialPracticesAfterWrapper(dataWrapper, allSocialPractices)
             .should.eql(expectResult);
     });
 
