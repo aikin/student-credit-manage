@@ -3,7 +3,7 @@ var testUtils         = require('../../utils');
 var TranscriptWrapper = require('../../../core/helpers/TranscriptWrapper');
 
 
-describe('transcript resealer', function() {
+describe('transcript wrapper', function() {
 
     var allCourses;
     var allSocialPractices;
@@ -62,6 +62,50 @@ describe('transcript resealer', function() {
 
         transcriptWrapper
             .fetchDetailStudiedCourses()
+            .should.eql(expectResult);
+    });
+
+    it('should fetch correct structure studiedPractices after wrapper', function() {
+
+        var transcriptWrapper = new TranscriptWrapper(
+
+            southHarmonTranscript.studiedCourses,
+            southHarmonTranscript.studiedSocialPractices,
+            allCourses,
+            allSocialPractices
+        );
+
+        var expectResult = [
+            {
+                id: 'SP110',
+                name: '实践1',
+                replaceableCourse: {
+                    id       : 'C115',
+                    name     : '课程F',
+                    credit   : 4,
+                    type     : 'obligatory',
+                    passLine : 60
+                },
+                passLine: 60,
+                score: 70
+            },
+            {
+                id: 'SP112',
+                name: '实践3',
+                replaceableCourse: {
+                    id       : 'C110',
+                    name     : '课程A',
+                    credit   : 2,
+                    type     : 'elective',
+                    passLine : 60
+                },
+                passLine: 60,
+                score: 90
+            }
+        ];
+
+        transcriptWrapper
+            .fetchDetailStudiedPractices()
             .should.eql(expectResult);
     });
 
