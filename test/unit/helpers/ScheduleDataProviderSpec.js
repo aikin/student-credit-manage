@@ -2,7 +2,7 @@ var should               = require('chai').should();
 var testUtils            = require('../../utils/index');
 var ScheduleDataProvider = require('../../../core/helpers/ScheduleDataProvider');
 
-describe('schedule data provider test', function() {
+describe('schedule data provider spec', function() {
 
     var allCourses;
     var allSocialPractices;

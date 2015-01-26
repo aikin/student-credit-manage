@@ -1,8 +1,8 @@
 var should        = require('chai').should();
-var testUtils     = require('../../utils');
+var testUtils     = require('../../utils/index');
 var SchoolReport  = require('../../../core/models/SchoolReport');
 
-describe('SchoolReport spec', function() {
+describe('school report spec', function() {
 
     var allCourses;
     var allSocialPractices;
