@@ -25,32 +25,7 @@ describe('school report spec', function() {
 
     it('should fetch correct studied courses after wrapper', function() {
 
-        var expectResult = [
-            {
-                id       : 'C110',
-                name     : '课程A',
-                credit   : 2,
-                type     : 'elective',
-                passLine : 60,
-                score    : 80
-            },
-            {
-                id       : 'C113',
-                name     : '课程D',
-                credit   : 2,
-                type     : 'obligatory',
-                passLine : 60,
-                score    : 50
-            },
-            {
-                id       : 'C114',
-                name     : '课程E',
-                credit   : 4,
-                type     : 'obligatory',
-                passLine : 60,
-                score    : 80
-            }
-        ];
+        var expectResult = testUtils.dataGiven.detailStudiedCourses;
 
         function DataWrapper() {}
         DataWrapper.prototype.wrapperObjectWithDetail = function(resealedData, dependData) {
@@ -72,22 +47,7 @@ describe('school report spec', function() {
 
     it('should fetch correct studied social practices after wrapper', function() {
 
-        var expectResult = [
-            {
-                id                : 'SP110',
-                name              : '实践1',
-                replaceableCourse : 'C115',
-                passLine          : 60,
-                score             : 70
-            },
-            {
-                id                : 'SP112',
-                name              : '实践3',
-                replaceableCourse : 'C111',
-                passLine          : 60,
-                score             : 90
-            }
-        ];
+        var expectResult = testUtils.dataGiven.detailStudiedSocialPractices;
 
         function DataWrapper() {}
         DataWrapper.prototype.wrapperObjectWithDetail = function(resealedData, dependData) {

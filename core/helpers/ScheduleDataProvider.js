@@ -9,10 +9,11 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
     for (var i = 0, max = detailStudiedCourses.length; i < max; i++) {
         if (detailStudiedCourses[i].score >= detailStudiedCourses[i].passLine) {
 
-            courseCredits[detailStudiedCourses[i].type]
-                = courseCredits[detailStudiedCourses[i].type] !== undefined
-                ? courseCredits[detailStudiedCourses[i].type] + detailStudiedCourses[i].credit
-                : 0 + detailStudiedCourses[i].credit;
+            courseCredits[detailStudiedCourses[i].type] =
+
+                    courseCredits[detailStudiedCourses[i].type] !== undefined
+                    ? courseCredits[detailStudiedCourses[i].type] + detailStudiedCourses[i].credit
+                    : 0 + detailStudiedCourses[i].credit;
         }
     }
     return courseCredits;
