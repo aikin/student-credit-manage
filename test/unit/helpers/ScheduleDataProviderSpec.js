@@ -35,14 +35,6 @@ describe('schedule data provider spec', function() {
             .should.eql({ obligatory: 4, elective: 2 });
     });
 
-    it('should fetch correct average score of studied courses', function() {
-
-        var scheduleDataProvider = new ScheduleDataProvider();
-
-        scheduleDataProvider
-            .fetchAverageScore(southHarmonSchoolReport.studiedCourses)
-            .should.eql(70);
-    });
 
     it('should fetch correct converted credits of studied social practices ', function() {
 
@@ -69,5 +61,14 @@ describe('schedule data provider spec', function() {
                 allCourses,
                 allSocialPractices )
             .should.eql({ obligatory: 2, elective: 2 });
+    });
+
+    xit('should fetch correct average score of studied courses', function() {
+
+        var scheduleDataProvider = new ScheduleDataProvider();
+
+        scheduleDataProvider
+            .fetchAverageScore(southHarmonSchoolReport.studiedCourses)
+            .should.eql(70);
     });
 });

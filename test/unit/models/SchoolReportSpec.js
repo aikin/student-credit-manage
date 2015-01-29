@@ -23,7 +23,7 @@ describe('school report spec', function() {
     });
 
 
-    it('should fetch correct  credits of studied courses', function() {
+    it('should fetch correct studied courses after wrapper', function() {
 
         var expectResult = [
             {
@@ -70,7 +70,7 @@ describe('school report spec', function() {
             .should.eql(expectResult);
     });
 
-    it('should fetch correct  credits of studied courses', function() {
+    it('should fetch correct studied social practices after wrapper', function() {
 
         var expectResult = [
             {
