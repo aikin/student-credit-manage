@@ -20,9 +20,15 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
 
 };
 
-ScheduleDataProvider.prototype.fetchConvertedSocialPracticeCredits = function(replacementRule, studiedCourses, studiedSocialPractices, allCourses, allSocialPractices) {
+ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, detailsStudiedSocialPractices) {
 
-    return { obligatory: 2, elective: 2 };
+    var expectResult = {
+        convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
+        totalCredits : {},
+        averageScore: {}
+    };
+
+    return expectResult;
 };
 
 module.exports = ScheduleDataProvider;

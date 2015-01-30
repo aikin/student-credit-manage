@@ -3,8 +3,8 @@ function ScheduleGenerator(college, courseCredits, convertedSocialPracticeCredit
     this.college                        = college;
     this.courseCredits                  = courseCredits;
     this.convertedSocialPracticeCredits = convertedSocialPracticeCredits;
-    this.shortageCredits                = shortageCredits;
     this.totalCredits                   = totalCredits;
+    this.shortageCredits                = shortageCredits;
     this.averageBaseline                = averageBaseline;
     this.averageScore                   = averageScore;
 }

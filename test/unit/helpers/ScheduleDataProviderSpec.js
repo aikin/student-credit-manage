@@ -54,11 +54,15 @@ describe('schedule data provider spec', function() {
 
         var replacementRule      = ReplacementRuleFactory.createReplacementRule(southHarmonSchoolReport.college);
         var scheduleDataProvider = new ScheduleDataProvider();
+        var detailCreditsInfo    = scheduleDataProvider.fetchDetailCreditsInfo(replacementRule, detailStudiedCourses, detailStudiedSocialPractices)
 
-        // TODO have to extract data packager
-        scheduleDataProvider
-            .fetchConvertedSocialPracticeCredits(replacementRule, detailStudiedCourses, detailStudiedSocialPractices)
-            .should.eql({ obligatory: 2, elective: 2 });
+        var expectResult = {
+            convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
+            totalCredits : {},
+            averageScore: {}
+        };
+
+        detailCreditsInfo.should.eql(expectResult);
     });
 
 });
