@@ -6,12 +6,15 @@ function SchoolReport(college, studiedCourses, studiedSocialPractices) {
 }
 
 
-SchoolReport.prototype.fetchStudiedCoursesAfterWrapper = function(dataWrapper, allCourses) {
+SchoolReport.prototype.fetchDetailStudiedCourses = function(dataWrapper, allCourses) {
+
     return dataWrapper.wrapperObjectWithDetail(this.studiedCourses, allCourses);
 };
 
-SchoolReport.prototype.fetchStudiedSocialPracticesAfterWrapper = function(dataWrapper, allSocialPractices) {
-    return dataWrapper.wrapperObjectWithDetail(this.studiedSocialPractices, allSocialPractices);
+SchoolReport.prototype.fetchDetailStudiedSocialPracticesWithReplaceableCourse = function(dataWrapper, allCourses, allSocialPractices) {
+
+    var detailStudiedSocialPractices = dataWrapper.wrapperObjectWithDetail(this.studiedSocialPractices, allSocialPractices);
+    return dataWrapper.wrapperStudiedSocialPracticesWithDetailReplaceableCourse(detailStudiedSocialPractices, allCourses)
 };
 
 module.exports = SchoolReport;

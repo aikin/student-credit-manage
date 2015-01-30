@@ -23,7 +23,7 @@ describe('school report spec', function() {
     });
 
 
-    it('should fetch correct studied courses after wrapper', function() {
+    it('should fetch detail studied courses after wrapper', function() {
 
         var expectResult = testUtils.dataGiven.detailStudiedCourses;
 
@@ -41,16 +41,23 @@ describe('school report spec', function() {
         );
 
         schoolReport
-            .fetchStudiedCoursesAfterWrapper(dataWrapper, allCourses)
+            .fetchDetailStudiedCourses(dataWrapper, allCourses)
             .should.eql(expectResult);
     });
 
-    it('should fetch correct studied social practices after wrapper', function() {
+    it('should fetch detail studied social practices after wrapper', function() {
 
         var expectResult = testUtils.dataGiven.detailStudiedSocialPractices;
 
         function DataWrapper() {}
         DataWrapper.prototype.wrapperObjectWithDetail = function(resealedData, dependData) {
+            return [
+                {id: 'SP110', name: '实践1', replaceableCourse: 'C115', passLine: 60},
+                {id: 'SP112', name: '实践3', replaceableCourse: 'C111', passLine: 60 }
+            ];
+        };
+
+        DataWrapper.prototype.wrapperStudiedSocialPracticesWithDetailReplaceableCourse = function() {
             return expectResult;
         };
 
@@ -63,7 +70,7 @@ describe('school report spec', function() {
         );
 
         schoolReport
-            .fetchStudiedSocialPracticesAfterWrapper(dataWrapper, allSocialPractices)
+            .fetchDetailStudiedSocialPracticesWithReplaceableCourse(dataWrapper, allCourses, allSocialPractices)
             .should.eql(expectResult);
     });
 
