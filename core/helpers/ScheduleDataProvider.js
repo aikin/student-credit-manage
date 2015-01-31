@@ -1,3 +1,5 @@
+"use strict";
+
 function ScheduleDataProvider() {
 }
 
@@ -22,10 +24,13 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
 
 ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, detailsStudiedSocialPractices) {
 
+    console.log(detailsStudiedSocialPractices);
+    console.log(detailStudiedCourses);
+
     var expectResult = {
         convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
-        totalCredits : {},
-        averageScore: {}
+        totalCredits                   : {},
+        shortageCredits                : {}
     };
 
     return expectResult;

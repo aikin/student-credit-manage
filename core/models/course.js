@@ -1,3 +1,5 @@
+"use strict";
+
 function Course(courseId, courseName, credit, type, passLine) {
 
     this.id       = courseId;

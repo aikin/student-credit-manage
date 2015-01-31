@@ -1,3 +1,5 @@
+"use strict";
+
 function SocialPractice(socialPracticeId, socialPracticeName, replaceableCourse, passLine) {
 
     this.id                = socialPracticeId;

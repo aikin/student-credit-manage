@@ -1,3 +1,5 @@
+"use strict";
+
 var should               = require('chai').should();
 var testUtils            = require('../../utils/index');
 var ScheduleDataProvider = require('../../../core/helpers/ScheduleDataProvider');
@@ -58,8 +60,8 @@ describe('schedule data provider spec', function() {
 
         var expectResult = {
             convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
-            totalCredits : {},
-            averageScore: {}
+            totalCredits                   : {},
+            shortageCredits                : {}
         };
 
         detailCreditsInfo.should.eql(expectResult);

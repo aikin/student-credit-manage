@@ -1,3 +1,5 @@
+"use strict";
+
 function ScheduleGenerator(college, courseCredits, convertedSocialPracticeCredits, totalCredits, shortageCredits, averageBaseline, averageScore) {
 
     this.college                        = college;

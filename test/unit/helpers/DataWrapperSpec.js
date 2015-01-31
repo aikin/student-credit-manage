@@ -1,3 +1,5 @@
+"use strict";
+
 var should      = require('chai').should();
 var testUtils   = require('../../utils');
 var DataWrapper = require('../../../core/helpers/DataWrapper');

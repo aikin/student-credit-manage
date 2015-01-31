@@ -1,3 +1,5 @@
+"use strict";
+
 function SchoolReport(college, studiedCourses, studiedSocialPractices) {
 
     this.college                = college;
