@@ -27,16 +27,15 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
 
 ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, passSocialPractices) {
 
-    var dataAfterReplacement = replacementRule.replace(detailStudiedCourses, passSocialPractices);
+    var dataAfterReplacement           = replacementRule.replace(detailStudiedCourses, passSocialPractices);
+    var totalCredits                   = this.fetchCourseCredits(dataAfterReplacement.studiedCoursesAfterReplace);
+    var convertedSocialPracticeCredits = { obligatory: 2, elective: 2 };
 
-
-    var expectResult = {
-        convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
-        totalCredits                   : {},
+    return {
+        convertedSocialPracticeCredits : convertedSocialPracticeCredits,
+        totalCredits                   : totalCredits,
         shortageCredits                : {}
     };
-
-    return expectResult;
 };
 
 module.exports = ScheduleDataProvider;

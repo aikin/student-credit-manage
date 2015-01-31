@@ -64,7 +64,7 @@ describe('schedule data provider spec', function() {
 
         var expectResult = {
             convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
-            totalCredits                   : {},
+            totalCredits                   : { obligatory: 6, elective: 4 },
             shortageCredits                : {}
         };
 
