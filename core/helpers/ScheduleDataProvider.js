@@ -25,20 +25,9 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
 
 };
 
-ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, detailsStudiedSocialPractices) {
+ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, passSocialPractices) {
 
-    // TODO extract function can filter pass social practice
-    var passSocialPractices = [];
-
-    for (var i = 0, max = detailsStudiedSocialPractices.length; i < max; i++) {
-        if (detailsStudiedSocialPractices[i].score >= detailsStudiedSocialPractices[i].passLine) {
-            var passSocialPractice = _.clone(detailsStudiedSocialPractices[i]);
-            passSocialPractices.push(passSocialPractice);
-        }
-    }
-
-    var studiedCoursesAfterReplace = replacementRule.replace(detailStudiedCourses, passSocialPractice);
-
+    var dataAfterReplacement = replacementRule.replace(detailStudiedCourses, passSocialPractices);
 
 
     var expectResult = {
