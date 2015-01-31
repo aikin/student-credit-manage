@@ -1,17 +1,18 @@
 module.exports = [
     {
-        id                : 'SP110',
-        name              : '实践1',
+        id                : 'SP111',
+        name              : '实践2',
         replaceableCourse : {
-            id       : 'C115',
-            name     : '课程F',
-            credit   : 4,
+            id       : 'C113',
+            name     : '课程D',
+            credit   : 2,
             type     : 'obligatory',
             passLine : 60
         },
         passLine          : 60,
         score             : 70
     },
+
     {
         id                : 'SP112',
         name              : '实践3',

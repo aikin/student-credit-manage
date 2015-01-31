@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require("lodash");
+
 function ScheduleDataProvider() {
 }
 
@@ -24,8 +26,19 @@ ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourse
 
 ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, detailsStudiedSocialPractices) {
 
-    console.log(detailsStudiedSocialPractices);
-    console.log(detailStudiedCourses);
+    // TODO extract function can filter pass social practice
+    var passSocialPractices = [];
+
+    for (var i = 0, max = detailsStudiedSocialPractices.length; i < max; i++) {
+        if (detailsStudiedSocialPractices[i].score >= detailsStudiedSocialPractices[i].passLine) {
+            var passSocialPractice = _.clone(detailsStudiedSocialPractices[i]);
+            passSocialPractices.push(passSocialPractice);
+        }
+    }
+
+    var studiedCoursesAfterReplace = replacementRule.replace(detailStudiedCourses, passSocialPractice);
+
+
 
     var expectResult = {
         convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },

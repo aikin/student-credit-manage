@@ -8,7 +8,7 @@ module.exports = {
         { id: 'C114', score: 80 }
     ],
     studiedSocialPractices: [
-        { id: 'SP110', score: 70 },
+        { id: 'SP111', score: 70 },
         { id: 'SP112', score: 90 }
     ]
 };
