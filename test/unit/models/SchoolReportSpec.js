@@ -76,4 +76,26 @@ describe('school report spec', function() {
             .should.eql(expectResult);
     });
 
+    it('should fetch pass social practices', function() {
+
+        var expectResult = testUtils.dataGiven.detailStudiedSocialPractices;
+
+        function DataWrapper() {}
+        DataWrapper.prototype.filterNotPassInfo = function(coursesOrPractices) {
+            return expectResult;
+        };
+
+        var dataWrapper  = new DataWrapper();
+        var schoolReport = new SchoolReport(
+
+            southHarmonSchoolReport.college,
+            southHarmonSchoolReport.studiedCourses,
+            southHarmonSchoolReport.studiedSocialPractices
+        );
+
+        schoolReport
+            .fetchPassSocialPractices(dataWrapper, expectResult)
+            .should.eql(expectResult);
+    });
+
 });
