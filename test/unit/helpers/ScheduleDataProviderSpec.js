@@ -46,75 +46,11 @@ describe('schedule data provider spec', function() {
         // mock SouthHarmonReplacementRule
         function SouthHarmonReplacementRule() {}
         SouthHarmonReplacementRule.prototype.replace = function(studiedCoursesBeforeReplace, passSocialPractices) {
-            module.exports = [
-                {
-                    id                : 'SP111',
-                    name              : '实践2',
-                    replaceableCourse : {
-                        id       : 'C113',
-                        name     : '课程D',
-                        credit   : 2,
-                        type     : 'obligatory',
-                        passLine : 60
-                    },
-                    passLine          : 60,
-                    score             : 70
-                },
-
-                {
-                    id                : 'SP112',
-                    name              : '实践3',
-                    replaceableCourse : {
-                        id       : 'C111',
-                        name     : '课程B',
-                        credit   : 2,
-                        type     : 'elective',
-                        passLine : 60
-                    },
-                    passLine          : 60,
-                    score             : 90
-                }
-            ];
-
-            module.exports = [
-                {
-                    id       : 'C110',
-                    name     : '课程A',
-                    credit   : 2,
-                    type     : 'elective',
-                    passLine : 60,
-                    score    : 80
-                },
-                {
-                    id       : 'C113',
-                    name     : '课程D',
-                    credit   : 2,
-                    type     : 'obligatory',
-                    passLine : 60,
-                    score    : 50
-                },
-                {
-                    id       : 'C114',
-                    name     : '课程E',
-                    credit   : 4,
-                    type     : 'obligatory',
-                    passLine : 60,
-                    score    : 80
-                },
-                {
-                    id       : 'C115',
-                    name     : '课程F',
-                    credit   : 4,
-                    type     : 'obligatory',
-                    passLine : 60
-                },
-                {
-                    id       : 'C111',
-                    name     : '课程B',
-                    credit   : 2,
-                    type     : 'elective',
-                    passLine : 60
-                }
+            return [
+                { id: 'C110', name: '课程A', credit: 2, type: 'elective',   passLine: 60, score: 80 },
+                { id: 'C113', name: '课程D', credit: 2, type: 'obligatory', passLine: 60, score: 70 },   // replaced                },
+                { id: 'C114', name: '课程E', credit: 4, type: 'obligatory', passLine: 60, score: 80 },
+                { id: 'C111', name: '课程B', credit: 2, type: 'elective',   passLine: 60, score: 90 }    // replaced
             ];
 
         };
@@ -128,7 +64,7 @@ describe('schedule data provider spec', function() {
 
         var replacementRule      = ReplacementRuleFactory.createReplacementRule(southHarmonSchoolReport.college);
         var scheduleDataProvider = new ScheduleDataProvider();
-        var detailCreditsInfo    = scheduleDataProvider.fetchDetailCreditsInfo(replacementRule, detailStudiedCourses, detailStudiedSocialPractices)
+        var detailCreditsInfo    = scheduleDataProvider.fetchDetailCreditsInfo(replacementRule, detailStudiedCourses, detailStudiedSocialPractices);
 
         var expectResult = {
             convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
