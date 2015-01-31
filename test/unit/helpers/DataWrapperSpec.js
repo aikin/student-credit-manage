@@ -10,6 +10,7 @@ describe('data wrapper spec', function() {
     var allSocialPractices;
     var studiedCourses;
     var studiedSocialPractices;
+    var detailStudiedCourses;
 
     beforeEach(function() {
 
@@ -17,6 +18,7 @@ describe('data wrapper spec', function() {
         allSocialPractices     = testUtils.dataGiven.socialPractices;
         studiedCourses         = testUtils.dataGiven.southHarmonSchoolReport.studiedCourses;
         studiedSocialPractices = testUtils.dataGiven.southHarmonSchoolReport.studiedSocialPractices;
+        detailStudiedCourses   = testUtils.dataGiven.detailStudiedCourses;
     });
 
     afterEach(function() {
@@ -25,17 +27,16 @@ describe('data wrapper spec', function() {
         allSocialPractices     = null;
         studiedCourses         = null;
         studiedSocialPractices = null;
+        detailStudiedCourses   = null;
     });
 
     it('should return correct structure studiedCourses after wrapper', function() {
 
-
-        var expectResult = testUtils.dataGiven.detailStudiedCourses;
         var dataWrapper  = new DataWrapper();
 
         dataWrapper
             .wrapperObjectWithDetail(studiedCourses, allCourses)
-            .should.eql(expectResult);
+            .should.eql(detailStudiedCourses);
     });
 
     it('should wrapper social practice with replaceableCourse', function() {
@@ -48,6 +49,20 @@ describe('data wrapper spec', function() {
 
         dataWrapper
             .wrapperStudiedSocialPracticesWithDetailReplaceableCourse(detailStudiedSocialPractices, allCourses)
+            .should.eql(expectResult);
+    });
+
+    it('should filter not pass info', function() {
+
+
+        var expectResult = [
+            { id: 'C110', name: '课程A', credit: 2, type: 'elective', passLine: 60, score: 80 },
+            { id: 'C114', name: '课程E', credit: 4, type: 'obligatory', passLine: 60, score: 80 }
+        ];
+        var dataWrapper  = new DataWrapper();
+
+        dataWrapper
+            .filterNotPassInfo(detailStudiedCourses)
             .should.eql(expectResult);
     });
 

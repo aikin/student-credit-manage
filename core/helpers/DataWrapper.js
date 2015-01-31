@@ -37,4 +37,16 @@ DataWrapper.prototype.wrapperStudiedSocialPracticesWithDetailReplaceableCourse =
     return detailStudiedSocialPractices;
 };
 
+DataWrapper.prototype.filterNotPassInfo = function(coursesOrPractices) {
+
+    var passData = [];
+    for (var i = 0, max = coursesOrPractices.length; i < max; i++) {
+        if (coursesOrPractices[i].score >= coursesOrPractices[i].passLine) {
+            var pass = _.clone(coursesOrPractices[i]);
+            passData.push(pass);
+        }
+    }
+    return passData;
+};
+
 module.exports = DataWrapper;
