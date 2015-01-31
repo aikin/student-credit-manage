@@ -8,7 +8,7 @@ function ScheduleDataProvider() {
 
 ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourses) {
 
-
+    // TODO extract calculator to calculate schedule data
     var courseCredits = {};
 
     for (var i = 0, max = detailStudiedCourses.length; i < max; i++) {
