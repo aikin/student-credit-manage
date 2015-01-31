@@ -3,6 +3,7 @@
 var _ = require("lodash");
 
 function ScheduleDataProvider() {
+    // TODO promote parameter to be attr
 }
 
 ScheduleDataProvider.prototype.fetchCourseCredits = function(detailStudiedCourses) {
