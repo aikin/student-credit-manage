@@ -56,7 +56,7 @@ describe('data wrapper spec', function() {
 
 
         var expectResult = [
-            { id: 'C110', name: '课程A', credit: 2, type: 'elective', passLine: 60, score: 80 },
+            { id: 'C110', name: '课程A', credit: 2, type: 'elective',   passLine: 60, score: 80 },
             { id: 'C114', name: '课程E', credit: 4, type: 'obligatory', passLine: 60, score: 80 }
         ];
         var dataWrapper  = new DataWrapper();
