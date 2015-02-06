@@ -1,4 +1,5 @@
 module.exports = {
+    college                      : require('../fixtures/college'),
     courses                      : require('../fixtures/courses'),
     socialPractices              : require('../fixtures/socialPractices'),
     southHarmonSchoolReport      : require('../fixtures/southHarmonSchoolReport'),
