@@ -6,16 +6,12 @@ var ScheduleDataProvider = require('../../../core/helpers/ScheduleDataProvider')
 
 describe('schedule data provider spec', function() {
 
-    var allCourses;
-    var allSocialPractices;
     var southHarmonSchoolReport;
     var detailStudiedCourses;
     var detailStudiedSocialPractices;
 
     beforeEach(function() {
 
-        allCourses                   = testUtils.dataGiven.courses;
-        allSocialPractices           = testUtils.dataGiven.socialPractices;
         southHarmonSchoolReport      = testUtils.dataGiven.southHarmonSchoolReport;
         detailStudiedCourses         = testUtils.dataGiven.detailStudiedCourses;
         detailStudiedSocialPractices = testUtils.dataGiven.detailStudiedSocialPractices;
@@ -23,8 +19,6 @@ describe('schedule data provider spec', function() {
 
     afterEach(function() {
 
-        allCourses                   = null;
-        allSocialPractices           = null;
         southHarmonSchoolReport      = null;
         detailStudiedCourses         = null;
         detailStudiedSocialPractices = null;

@@ -9,7 +9,7 @@ function HarmonReplacementRule() {
 
 util.inherits(HarmonReplacementRule, ReplacementRule);
 
-HarmonReplacementRule.prototype.replace = function() {
+HarmonReplacementRule.prototype.replace = function(detailStudiedCourses, passSocialPractices) {
 
 };
 

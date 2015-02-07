@@ -9,7 +9,8 @@ function SouthHarmonReplacementRule() {
 
 util.inherits(SouthHarmonReplacementRule, ReplacementRule);
 
-SouthHarmonReplacementRule.prototype.replace = function() {
+SouthHarmonReplacementRule.prototype.replace = function(detailStudiedCourses, passSocialPractices) {
+    return {};
 };
 
 module.exports = SouthHarmonReplacementRule;

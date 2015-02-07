@@ -2,27 +2,29 @@
 
 var should                     = require('chai').should();
 var testUtils                  = require('../../utils');
-var ReplacementRuleFactory     = require('../../../core/helpers/ReplacementRuleFactory');
 var SouthHarmonReplacementRule = require('../../../core/helpers/SouthHarmonReplacementRule');
 
 describe('replacement rule factory spec', function() {
 
-    var southHarmonSchoolReport;
+    var detailStudiedCourses;
+    var passSocialPractices;
 
     beforeEach(function() {
 
-        southHarmonSchoolReport = testUtils.dataGiven.southHarmonSchoolReport;
+        detailStudiedCourses = testUtils.dataGiven.detailStudiedCourses;
+        passSocialPractices  = testUtils.dataGiven.detailStudiedSocialPractices;
     });
 
     afterEach(function() {
 
-        southHarmonSchoolReport = null;
+        detailStudiedCourses = null;
+        passSocialPractices  = null;
     });
 
-    it('should create replacement rule for south harmon', function() {
+    it('should correct info after replace', function() {
 
-        var replacementRule = ReplacementRuleFactory.createReplacementRule(southHarmonSchoolReport.college);
-        replacementRule.should.to.instanceOf(SouthHarmonReplacementRule);
+        var southHarmonReplacementRule = new SouthHarmonReplacementRule();
+        southHarmonReplacementRule.replace(detailStudiedCourses, passSocialPractices).should.eql({})
     });
 
 });
