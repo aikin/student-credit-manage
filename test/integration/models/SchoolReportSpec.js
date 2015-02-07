@@ -12,6 +12,8 @@ describe('school report spec', function() {
     var southHarmonSchoolReport;
     var detailStudiedCourses;
     var detailStudiedSocialPractices;
+    var passSocialPractices;
+    var coursesAfterClassify;
 
     beforeEach(function() {
 
@@ -20,6 +22,8 @@ describe('school report spec', function() {
         southHarmonSchoolReport      = testUtils.dataGiven.southHarmonSchoolReport;
         detailStudiedCourses         = testUtils.dataGiven.detailStudiedCourses;
         detailStudiedSocialPractices = testUtils.dataGiven.detailStudiedSocialPractices;
+        passSocialPractices          = testUtils.dataGiven.passSocialPractices;
+        coursesAfterClassify         = testUtils.dataGiven.coursesAfterClassify;
     });
 
     afterEach(function() {
@@ -29,6 +33,8 @@ describe('school report spec', function() {
         southHarmonSchoolReport      = null;
         detailStudiedCourses         = null;
         detailStudiedSocialPractices = null;
+        passSocialPractices          = null;
+        coursesAfterClassify         = null;
     });
 
 
@@ -64,7 +70,6 @@ describe('school report spec', function() {
 
     it('should fetch pass social practices', function() {
 
-        var expectResult = detailStudiedSocialPractices;
 
         var dataWrapper  = new DataWrapper();
         var schoolReport = new SchoolReport(
@@ -75,20 +80,11 @@ describe('school report spec', function() {
         );
 
         schoolReport
-            .fetchPassSocialPractices(dataWrapper, expectResult)
-            .should.eql(detailStudiedSocialPractices);
+            .fetchPassSocialPractices(dataWrapper, detailStudiedSocialPractices)
+            .should.eql(passSocialPractices);
     });
 
     it('should fetch pass course', function() {
-
-        var expectResult = {
-            pass: [
-                {id: 'C110', name: '课程A', credit: 2, type: 'elective',   passLine: 60, score: 80},
-                {id: 'C114', name: '课程E', credit: 4, type: 'obligatory', passLine: 60, score: 80}
-            ],
-            notPass: [{id: 'C113', name: '课程D', credit: 2, type: 'obligatory', passLine: 60, score: 50}]
-        };
-
 
         var dataWrapper  = new DataWrapper();
         var schoolReport = new SchoolReport(
@@ -100,7 +96,7 @@ describe('school report spec', function() {
 
         schoolReport
             .classifyStudiedCourses(dataWrapper, detailStudiedCourses)
-            .should.eql(expectResult);
+            .should.eql(coursesAfterClassify);
     });
 
 });

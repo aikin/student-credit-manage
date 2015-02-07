@@ -11,6 +11,7 @@ describe('data wrapper spec', function() {
     var studiedCourses;
     var studiedSocialPractices;
     var detailStudiedCourses;
+    var coursesAfterClassify;
 
     beforeEach(function() {
 
@@ -19,6 +20,8 @@ describe('data wrapper spec', function() {
         studiedCourses         = testUtils.dataGiven.southHarmonSchoolReport.studiedCourses;
         studiedSocialPractices = testUtils.dataGiven.southHarmonSchoolReport.studiedSocialPractices;
         detailStudiedCourses   = testUtils.dataGiven.detailStudiedCourses;
+        coursesAfterClassify   = testUtils.dataGiven.coursesAfterClassify;
+
     });
 
     afterEach(function() {
@@ -28,6 +31,7 @@ describe('data wrapper spec', function() {
         studiedCourses         = null;
         studiedSocialPractices = null;
         detailStudiedCourses   = null;
+        coursesAfterClassify   = null;
     });
 
     it('should return correct structure studiedCourses after wrapper', function() {
@@ -52,16 +56,10 @@ describe('data wrapper spec', function() {
             .should.eql(expectResult);
     });
 
-    it('should filter not pass info', function() {
+    it('should wrapper courses after classify', function() {
 
-
-        var expectResult = [
-            { id: 'C110', name: '课程A', credit: 2, type: 'elective',   passLine: 60, score: 80 },
-            { id: 'C114', name: '课程E', credit: 4, type: 'obligatory', passLine: 60, score: 80 }
-        ];
         var dataWrapper  = new DataWrapper();
-
-        dataWrapper.classifyPassAndNotPass(detailStudiedCourses).pass.should.eql(expectResult);
+        dataWrapper.classifyPassAndNotPass(detailStudiedCourses).should.eql(coursesAfterClassify);
     });
 
 });
