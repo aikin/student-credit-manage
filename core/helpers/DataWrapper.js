@@ -37,16 +37,23 @@ DataWrapper.prototype.wrapperStudiedSocialPracticesWithDetailReplaceableCourse =
     return detailStudiedSocialPractices;
 };
 
-DataWrapper.prototype.filterNotPassInfo = function(coursesOrPractices) {
+DataWrapper.prototype.classifyPassAndNotPass = function(coursesOrPractices) {
 
-    var passData = [];
+    var passInfo    = [];
+    var notPassInfo = [];
+
     for (var i = 0, max = coursesOrPractices.length; i < max; i++) {
-        if (coursesOrPractices[i].score >= coursesOrPractices[i].passLine) {
-            var pass = _.clone(coursesOrPractices[i]);
-            passData.push(pass);
+        if (coursesOrPractices[i].score < coursesOrPractices[i].passLine) {
+            notPassInfo.push(_.clone(coursesOrPractices[i]));
+            continue;
         }
+        passInfo.push(_.clone(coursesOrPractices[i]));
     }
-    return passData;
+
+    return {
+        pass   : passInfo,
+        notPass: notPassInfo
+    };
 };
 
 module.exports = DataWrapper;

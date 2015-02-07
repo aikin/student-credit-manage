@@ -21,7 +21,12 @@ SchoolReport.prototype.fetchDetailStudiedSocialPracticesWithReplaceableCourse = 
 
 SchoolReport.prototype.fetchPassSocialPractices = function(dataWrapper, detailStudiedSocialPractices) {
 
-    return dataWrapper.filterNotPassInfo(detailStudiedSocialPractices);
+    return dataWrapper.classifyPassAndNotPass(detailStudiedSocialPractices).pass;
+};
+
+SchoolReport.prototype.classifyStudiedCourses = function(dataWrapper, detailStudiedCourses) {
+
+    return dataWrapper.classifyPassAndNotPass(detailStudiedCourses);
 };
 
 module.exports = SchoolReport;

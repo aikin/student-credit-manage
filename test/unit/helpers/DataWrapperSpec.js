@@ -61,9 +61,7 @@ describe('data wrapper spec', function() {
         ];
         var dataWrapper  = new DataWrapper();
 
-        dataWrapper
-            .filterNotPassInfo(detailStudiedCourses)
-            .should.eql(expectResult);
+        dataWrapper.classifyPassAndNotPass(detailStudiedCourses).pass.should.eql(expectResult);
     });
 
 });
