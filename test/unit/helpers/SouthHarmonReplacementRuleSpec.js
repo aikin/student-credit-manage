@@ -6,20 +6,20 @@ var SouthHarmonReplacementRule = require('../../../core/helpers/SouthHarmonRepla
 
 describe('replacement rule factory spec', function() {
 
-    var detailStudiedCourses;
+    var coursesAfterClassify;
     var passSocialPractices;
     var dataAfterReplacement;
 
     beforeEach(function() {
 
-        detailStudiedCourses = testUtils.dataGiven.detailStudiedCourses;
-        passSocialPractices  = testUtils.dataGiven.detailStudiedSocialPractices;
+        coursesAfterClassify = testUtils.dataGiven.coursesAfterClassify;
+        passSocialPractices  = testUtils.dataGiven.passSocialPractices;
         dataAfterReplacement = testUtils.dataGiven.dataAfterReplacement;
     });
 
     afterEach(function() {
 
-        detailStudiedCourses = null;
+        coursesAfterClassify = null;
         passSocialPractices  = null;
         dataAfterReplacement = null;
     });
@@ -27,7 +27,7 @@ describe('replacement rule factory spec', function() {
     it('should correct info after replace', function() {
 
         var southHarmonReplacementRule = new SouthHarmonReplacementRule();
-        southHarmonReplacementRule.replace(detailStudiedCourses, passSocialPractices).should.eql(dataAfterReplacement)
+        southHarmonReplacementRule.replace(coursesAfterClassify, passSocialPractices).should.eql(dataAfterReplacement)
     });
 
 });

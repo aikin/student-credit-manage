@@ -10,30 +10,20 @@ function SouthHarmonReplacementRule() {
 
 util.inherits(SouthHarmonReplacementRule, ReplacementRule);
 
-SouthHarmonReplacementRule.prototype.replace = function(detailStudiedCourses, passSocialPractices) {
+SouthHarmonReplacementRule.prototype.replace = function(coursesAfterClassify, passSocialPractices) {
 
     // TODO more level
 
-    var notPassStudiedCourses                      = [];
-    var passStudiedCourses                         = [];
+    var notPassStudiedCourses                = _.cloneDeep(coursesAfterClassify.notPass);
+    var passStudiedCourses                   = _.cloneDeep(coursesAfterClassify.pass);
+    var studiedSocialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
     
     var studiedCoursesAfterReplace                 = [];
     var convertedSocialPractices                   = [];
     var convertedSocialPracticesWithCreditIncrease = [];
 
-    var studiedSocialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
-
-    for (var i = 0, max = detailStudiedCourses.length; i < max; i++) {
-        if (detailStudiedCourses[i].score < detailStudiedCourses[i].passLine) {
-            notPassStudiedCourses.push(_.clone(detailStudiedCourses[i]));
-            continue;
-        }
-        passStudiedCourses.push(_.clone(detailStudiedCourses[i]));
-    }
-
-
     for (var i = 0; i < studiedSocialPracticesCanReplacement.length; i++) {
-        for (var j = 0, notPassStudiedCoursesLength = notPassStudiedCourses.length; j < notPassStudiedCoursesLength; j++) {
+        for (var j = 0; j < notPassStudiedCourses.length; j++) {
 
             if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === notPassStudiedCourses[j].id) {
 
