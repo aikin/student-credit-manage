@@ -14,44 +14,60 @@ SouthHarmonReplacementRule.prototype.replace = function(detailStudiedCourses, pa
 
     // TODO more level
 
-    var studiedCoursesAfterReplace                 = _.cloneDeep(detailStudiedCourses);
+    var notPassStudiedCourses                      = [];
+    var passStudiedCourses                         = [];
+    
+    var studiedCoursesAfterReplace                 = [];
     var convertedSocialPractices                   = [];
     var convertedSocialPracticesWithCreditIncrease = [];
 
-    for (var i = 0, passSocialPracticesLength = passSocialPractices.length ; i < passSocialPracticesLength; i++) {
-        for (var j = 0, studiedCoursesAfterReplaceLength = studiedCoursesAfterReplace.length; j < studiedCoursesAfterReplaceLength; j++) {
+    var studiedSocialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
 
-            if (passSocialPractices[i].replaceableCourse.id === studiedCoursesAfterReplace[j].id
-                && passSocialPractices[i].score > studiedCoursesAfterReplace[j].score
-                && studiedCoursesAfterReplace[j].score > studiedCoursesAfterReplace[j].passLine
-            ) {
+    for (var i = 0, max = detailStudiedCourses.length; i < max; i++) {
+        if (detailStudiedCourses[i].score < detailStudiedCourses[i].passLine) {
+            notPassStudiedCourses.push(_.clone(detailStudiedCourses[i]));
+            continue;
+        }
+        passStudiedCourses.push(_.clone(detailStudiedCourses[i]));
+    }
 
-                studiedCoursesAfterReplace[j].score = passSocialPractices[i].score;
+
+    for (var i = 0; i < studiedSocialPracticesCanReplacement.length; i++) {
+        for (var j = 0, notPassStudiedCoursesLength = notPassStudiedCourses.length; j < notPassStudiedCoursesLength; j++) {
+
+            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === notPassStudiedCourses[j].id) {
+
+                notPassStudiedCourses[j].score = passSocialPractices[i].score;
+                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(studiedSocialPracticesCanReplacement[i]));
+                studiedSocialPracticesCanReplacement.splice(i, 1);
+            }
+        }
+    }
+
+    for (var i = 0, studiedSocialPracticesCanReplacementLength = studiedSocialPracticesCanReplacement.length ; i < studiedSocialPracticesCanReplacementLength; i++) {
+        for (var j = 0, passStudiedCoursesLength = passStudiedCourses.length; j < passStudiedCoursesLength; j++) {
+
+            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id === passStudiedCourses[j].id
+                && passStudiedCourses[j].score > passStudiedCourses[j].score ) {
+
+                passStudiedCourses[j].score = passSocialPractices[i].score;
                 convertedSocialPractices.push(_.cloneDeep(passSocialPractices[i]));
                 break;
             }
 
-            if (passSocialPractices[i].replaceableCourse.id === studiedCoursesAfterReplace[j].id
-                && passSocialPractices[i].score > studiedCoursesAfterReplace[j].score
-                && studiedCoursesAfterReplace[j].score < studiedCoursesAfterReplace[j].passLine
-            ) {
+            if (studiedSocialPracticesCanReplacement[i].replaceableCourse.id !== passStudiedCourses[j].id && j === passStudiedCoursesLength - 1) {
 
-                studiedCoursesAfterReplace[j].score = passSocialPractices[i].score;
-                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(passSocialPractices[i]));
-                break;
+                var newAddedCourse   = _.clone(studiedSocialPracticesCanReplacement[i].replaceableCourse);
+                newAddedCourse.score = studiedSocialPracticesCanReplacement[i].score;
+
+                passStudiedCourses.push(newAddedCourse);
+                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(studiedSocialPracticesCanReplacement[i]));
             }
-
-            if (passSocialPractices[i].replaceableCourse.id !== studiedCoursesAfterReplace[j].id && j === studiedCoursesAfterReplaceLength - 1) {
-
-                var newAddedCourse   = _.clone(passSocialPractices[i].replaceableCourse);
-                newAddedCourse.score = passSocialPractices[i].score;
-
-                studiedCoursesAfterReplace.push(newAddedCourse);
-                convertedSocialPracticesWithCreditIncrease.push(_.cloneDeep(passSocialPractices[i]))
-            }
-
         }
     }
+
+    studiedCoursesAfterReplace = passStudiedCourses.concat(notPassStudiedCourses);
+
 
     return {
         studiedCoursesAfterReplace                : studiedCoursesAfterReplace,
