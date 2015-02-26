@@ -9,12 +9,16 @@ describe('schedule data provider spec', function() {
     var southHarmonSchoolReport;
     var detailStudiedCourses;
     var detailStudiedSocialPractices;
+    var dataAfterReplacement;
+    var southHarmonBaseline;
 
     beforeEach(function() {
 
         southHarmonSchoolReport      = testUtils.dataGiven.southHarmonSchoolReport;
         detailStudiedCourses         = testUtils.dataGiven.detailStudiedCourses;
         detailStudiedSocialPractices = testUtils.dataGiven.detailStudiedSocialPractices;
+        dataAfterReplacement         = testUtils.dataGiven.dataAfterReplacement;
+        southHarmonBaseline          = testUtils.dataGiven.southHarmonBaseline;
     });
 
     afterEach(function() {
@@ -22,16 +26,37 @@ describe('schedule data provider spec', function() {
         southHarmonSchoolReport      = null;
         detailStudiedCourses         = null;
         detailStudiedSocialPractices = null;
+        dataAfterReplacement         = null;
+        southHarmonBaseline          = null;
     });
 
 
-    it('should fetch correct credits of studied courses', function() {
+    it('should fetch correct total credits', function() {
 
         var scheduleDataProvider = new ScheduleDataProvider();
 
         scheduleDataProvider
-            .fetchCourseCredits(detailStudiedCourses)
-            .should.eql({ obligatory: 4, elective: 2 });
+            .fetchTotalCredits(dataAfterReplacement.studiedCoursesAfterReplace)
+            .should.eql({ obligatory: 6, elective: 4 });
+    });
+
+    it('should fetch correct shortage credits', function() {
+
+        var scheduleDataProvider = new ScheduleDataProvider();
+        var totalCredits = scheduleDataProvider.fetchTotalCredits(dataAfterReplacement.studiedCoursesAfterReplace);
+
+        scheduleDataProvider
+            .fetchShortageCredits(totalCredits, southHarmonBaseline)
+            .should.eql({ obligatory: 24, elective: 16 });
+    });
+
+    it('should fetch correct average score', function() {
+
+        var scheduleDataProvider = new ScheduleDataProvider();
+
+        scheduleDataProvider
+            .fetchAverageScore(dataAfterReplacement.studiedCoursesAfterReplace)
+            .should.eql(Number(80).toFixed(1));
     });
 
 
