@@ -7,7 +7,7 @@ module.exports = {
         { id: 'C113', name: '课程D', credit: 2, type: 'obligatory', passLine: 60, score: 70 }    // replaced
     ],
 
-    convertedSocialPractices: [],
+    convertedSocialPracticesWithOnlyScoreIncrease: [],
     convertedSocialPracticesWithCreditIncrease: [
         {
             id                : 'SP111',
