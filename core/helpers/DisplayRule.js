@@ -1,3 +1,7 @@
-/**
- * Created by aikin on 2/26/15.
- */
+'use strict';
+
+function DisplayRule() {}
+
+DisplayRule.prototype.generateDisplayData = function() {};
+
+module.exports = DisplayRule;

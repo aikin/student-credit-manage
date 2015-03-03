@@ -72,8 +72,6 @@ SouthHarmonReplacementRule.prototype._replaceSocialPracticeWithNewCourse = funct
 
 SouthHarmonReplacementRule.prototype.replace = function(coursesAfterClassify, passSocialPractices) {
 
-    // TODO more level
-
     var notPassCourses                = _.cloneDeep(coursesAfterClassify.notPass);
     var passCourses                   = _.cloneDeep(coursesAfterClassify.pass);
     var socialPracticesCanReplacement = _.cloneDeep(passSocialPractices);
