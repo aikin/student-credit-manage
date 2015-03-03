@@ -2,7 +2,7 @@
 
 var should                     = require('chai').should();
 var testUtils                  = require('../../utils');
-var SouthHarmonReplacementRule = require('../../../core/helpers/SouthHarmonReplacementRule');
+var SouthHarmonReplacementRule = require('../../../core/helpers/replacement_rules/SouthHarmonReplacementRule');
 
 describe('replacement rule factory spec', function() {
 

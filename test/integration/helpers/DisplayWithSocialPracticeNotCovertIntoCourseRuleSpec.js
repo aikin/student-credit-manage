@@ -2,7 +2,7 @@
 
 var should                                           = require('chai').should();
 var testUtils                                        = require('../../utils');
-var DisplayWithSocialPracticeNotCovertIntoCourseRule = require('../../../core/helpers/DisplayWithSocialPracticeNotCovertIntoCourseRule');
+var DisplayWithSocialPracticeNotCovertIntoCourseRule = require('../../../core/helpers/display_rules/DisplayWithSocialPracticeNotCovertIntoCourseRule');
 
 describe('display with social practice not covert into course spec', function() {
 

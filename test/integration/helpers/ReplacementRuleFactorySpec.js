@@ -2,9 +2,9 @@
 
 var should                     = require('chai').should();
 var testUtils                  = require('../../utils');
-var ReplacementRuleFactory     = require('../../../core/helpers/ReplacementRuleFactory');
-var HarmonReplacementRule      = require('../../../core/helpers/HarmonReplacementRule');
-var SouthHarmonReplacementRule = require('../../../core/helpers/SouthHarmonReplacementRule');
+var ReplacementRuleFactory     = require('../../../core/helpers/replacement_rules/ReplacementRuleFactory');
+var HarmonReplacementRule      = require('../../../core/helpers/replacement_rules/HarmonReplacementRule');
+var SouthHarmonReplacementRule = require('../../../core/helpers/replacement_rules/SouthHarmonReplacementRule');
 
 describe('replacement rule factory spec', function() {
 
