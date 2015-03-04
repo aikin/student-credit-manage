@@ -3,6 +3,7 @@
 var should                                           = require('chai').should();
 var testUtils                                        = require('../../utils');
 var DisplayWithSocialPracticeNotCovertIntoCourseRule = require('../../../core/helpers/display_rules/DisplayWithSocialPracticeNotCovertIntoCourseRule');
+var CreditCalculator                                 = require('../../../core/helpers/CreditCalculator');
 
 describe('display with social practice not covert into course spec', function() {
 
@@ -22,13 +23,15 @@ describe('display with social practice not covert into course spec', function() 
     it('should generate correct display data about not social practice covert into course', function() {
 
         var displayWithSocialPracticeNotCovertIntoCourseRule = new DisplayWithSocialPracticeNotCovertIntoCourseRule();
+        var creditCalculator = new CreditCalculator();
+
+        var expectResult = {
+            courseCredits                 : {obligatory: 4, elective: 2},
+            convertedSocialPracticeCredits: {obligatory: 2, elective: 2}
+        };
         displayWithSocialPracticeNotCovertIntoCourseRule
-            .generateDisplayData(detailStudiedCourses, dataAfterReplacement)
-            .should
-            .eql({
-                courseCredits                 : {obligatory: 4, elective: 2},
-                convertedSocialPracticeCredits: {obligatory: 2, elective: 2}
-            });
+            .generateDisplayData(creditCalculator, detailStudiedCourses, dataAfterReplacement)
+            .should.eql(expectResult);
     });
 
 });
