@@ -3,6 +3,8 @@
 var should               = require('chai').should();
 var testUtils            = require('../../utils/index');
 var ScheduleDataProvider = require('../../../core/helpers/ScheduleDataProvider');
+var CreditCalculator     = require('../../../core/helpers/CreditCalculator');
+var ScoreCalculator      = require('../../../core/helpers/ScoreCalculator');
 
 describe('schedule data provider spec', function() {
 
@@ -11,6 +13,7 @@ describe('schedule data provider spec', function() {
     var detailStudiedSocialPractices;
     var dataAfterReplacement;
     var southHarmonBaseline;
+    var scheduleDataProvider;
 
     beforeEach(function() {
 
@@ -19,21 +22,20 @@ describe('schedule data provider spec', function() {
         detailStudiedSocialPractices = testUtils.dataGiven.detailStudiedSocialPractices;
         dataAfterReplacement         = testUtils.dataGiven.dataAfterReplacement;
         southHarmonBaseline          = testUtils.dataGiven.southHarmonBaseline;
+        scheduleDataProvider         = new ScheduleDataProvider(new CreditCalculator());
     });
 
     afterEach(function() {
 
-        southHarmonSchoolReport      = null;
-        detailStudiedCourses         = null;
-        detailStudiedSocialPractices = null;
-        dataAfterReplacement         = null;
-        southHarmonBaseline          = null;
+        //southHarmonSchoolReport      = null;
+        //detailStudiedCourses         = null;
+        //detailStudiedSocialPractices = null;
+        //dataAfterReplacement         = null;
+        //southHarmonBaseline          = null;
     });
 
 
     it('should fetch correct total credits', function() {
-
-        var scheduleDataProvider = new ScheduleDataProvider();
 
         scheduleDataProvider
             .fetchTotalCredits(dataAfterReplacement.studiedCoursesAfterReplace)
@@ -42,7 +44,6 @@ describe('schedule data provider spec', function() {
 
     it('should fetch correct shortage credits', function() {
 
-        var scheduleDataProvider = new ScheduleDataProvider();
         var totalCredits = scheduleDataProvider.fetchTotalCredits(dataAfterReplacement.studiedCoursesAfterReplace);
 
         scheduleDataProvider
@@ -52,10 +53,8 @@ describe('schedule data provider spec', function() {
 
     it('should fetch correct average score', function() {
 
-        var scheduleDataProvider = new ScheduleDataProvider();
-
         scheduleDataProvider
-            .fetchAverageScore(dataAfterReplacement.studiedCoursesAfterReplace)
+            .fetchAverageScore(new ScoreCalculator(), dataAfterReplacement.studiedCoursesAfterReplace)
             .should.eql(Number(80).toFixed(1));
     });
 
@@ -78,7 +77,6 @@ describe('schedule data provider spec', function() {
 
 
         var replacementRule      = ReplacementRuleFactory.createReplacementRule(southHarmonSchoolReport.college);
-        var scheduleDataProvider = new ScheduleDataProvider();
         var detailCreditsInfo    = scheduleDataProvider.fetchDetailCreditsInfo(replacementRule, detailStudiedCourses, detailStudiedSocialPractices);
 
         var expectResult = {

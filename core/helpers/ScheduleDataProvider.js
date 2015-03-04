@@ -1,42 +1,23 @@
 "use strict";
 
-var _ = require("lodash");
+function ScheduleDataProvider(creditCalculator) {
 
-function ScheduleDataProvider() {
-    // TODO promote parameter to be attr
+    this.creditCalculator = creditCalculator;
 }
 
 ScheduleDataProvider.prototype.fetchTotalCredits = function(studiedCoursesAfterReplace) {
 
-    // TODO extract calculator to calculate schedule data
-    var totalCredits = { obligatory: 0, elective: 0 };
-
-    for (var i = 0, max = studiedCoursesAfterReplace.length; i < max; i++) {
-        if (studiedCoursesAfterReplace[i].score >= studiedCoursesAfterReplace[i].passLine) {
-            totalCredits[studiedCoursesAfterReplace[i].type] += studiedCoursesAfterReplace[i].credit;
-        }
-    }
-    return totalCredits;
+    return this.creditCalculator.calculateCourseCredit(studiedCoursesAfterReplace);
 };
 
 ScheduleDataProvider.prototype.fetchShortageCredits = function(totalCredits, baseline) {
 
-    var shortageCredits = { obligatory: 0, elective: 0 };
-
-    shortageCredits.obligatory = baseline.creditLine.obligatory - totalCredits.obligatory;
-    shortageCredits.elective   = baseline.creditLine.elective - totalCredits.elective;
-    return shortageCredits;
+    return this.creditCalculator.calculateShortageCredit(totalCredits, baseline)
 };
 
-ScheduleDataProvider.prototype.fetchAverageScore = function(studiedCoursesAfterReplace) {
+ScheduleDataProvider.prototype.fetchAverageScore = function(scoreCalculator, studiedCoursesAfterReplace) {
 
-    var sum = 0;
-    var maxLength = studiedCoursesAfterReplace.length;
-
-    for (var i = 0; i < maxLength; i++) {
-        sum += studiedCoursesAfterReplace[i].score;
-    }
-    return (sum / maxLength).toFixed(1);
+    return scoreCalculator.calculateAverageScore(studiedCoursesAfterReplace);
 };
 
 ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, passSocialPractices) {

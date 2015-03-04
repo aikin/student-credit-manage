@@ -26,4 +26,13 @@ CreditCalculator.prototype.calculateSocialPracticeCredit = function(socialPracti
     return convertedSocialPracticeCredits;
 };
 
+CreditCalculator.prototype.calculateShortageCredit = function(totalCredits, baseline) {
+
+    var shortageCredits = { obligatory: 0, elective: 0 };
+
+    shortageCredits.obligatory = baseline.creditLine.obligatory - totalCredits.obligatory;
+    shortageCredits.elective   = baseline.creditLine.elective - totalCredits.elective;
+    return shortageCredits;
+};
+
 module.exports = CreditCalculator;
