@@ -26,8 +26,8 @@ describe('display with social practice not covert into course spec', function() 
             .generateDisplayData(detailStudiedCourses, dataAfterReplacement)
             .should
             .eql({
-                courseCredits                 : {},
-                convertedSocialPracticeCredits: {}
+                courseCredits                 : {obligatory: 4, elective: 2},
+                convertedSocialPracticeCredits: {obligatory: 2, elective: 2}
             });
     });
 
