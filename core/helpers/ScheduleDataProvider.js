@@ -20,17 +20,9 @@ ScheduleDataProvider.prototype.fetchAverageScore = function(scoreCalculator, stu
     return scoreCalculator.calculateAverageScore(studiedCoursesAfterReplace);
 };
 
-ScheduleDataProvider.prototype.fetchDetailCreditsInfo = function(replacementRule, detailStudiedCourses, passSocialPractices) {
+ScheduleDataProvider.prototype.fetchCreditsAfterDisplayRuleHandle = function(displayRule, studiedCourses, dataAfterReplacement) {
 
-    var dataAfterReplacement           = replacementRule.replace(detailStudiedCourses, passSocialPractices);
-    var totalCredits                   = this.fetchTotalCredits(dataAfterReplacement.studiedCoursesAfterReplace);
-    var convertedSocialPracticeCredits = { obligatory: 2, elective: 2 };
-
-    return {
-        convertedSocialPracticeCredits : convertedSocialPracticeCredits,
-        totalCredits                   : totalCredits,
-        shortageCredits                : {}
-    };
+    return displayRule.generateDisplayData(this.creditCalculator, studiedCourses, dataAfterReplacement);
 };
 
 module.exports = ScheduleDataProvider;

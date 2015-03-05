@@ -1,37 +1,33 @@
 "use strict";
 
-var should               = require('chai').should();
-var testUtils            = require('../../utils/index');
-var ScheduleDataProvider = require('../../../core/helpers/ScheduleDataProvider');
-var CreditCalculator     = require('../../../core/helpers/CreditCalculator');
-var ScoreCalculator      = require('../../../core/helpers/ScoreCalculator');
+var should                                           = require('chai').should();
+var testUtils                                        = require('../../utils/index');
+var ScheduleDataProvider                             = require('../../../core/helpers/ScheduleDataProvider');
+var CreditCalculator                                 = require('../../../core/helpers/CreditCalculator');
+var ScoreCalculator                                  = require('../../../core/helpers/ScoreCalculator');
+var DisplayWithSocialPracticeNotCovertIntoCourseRule = require('../../../core/helpers/display_rules/DisplayWithSocialPracticeNotCovertIntoCourseRule');
 
 describe('schedule data provider spec', function() {
 
-    var southHarmonSchoolReport;
     var detailStudiedCourses;
-    var detailStudiedSocialPractices;
     var dataAfterReplacement;
     var southHarmonBaseline;
     var scheduleDataProvider;
 
     beforeEach(function() {
 
-        southHarmonSchoolReport      = testUtils.dataGiven.southHarmonSchoolReport;
-        detailStudiedCourses         = testUtils.dataGiven.detailStudiedCourses;
-        detailStudiedSocialPractices = testUtils.dataGiven.detailStudiedSocialPractices;
-        dataAfterReplacement         = testUtils.dataGiven.dataAfterReplacement;
-        southHarmonBaseline          = testUtils.dataGiven.southHarmonBaseline;
-        scheduleDataProvider         = new ScheduleDataProvider(new CreditCalculator());
+        detailStudiedCourses = testUtils.dataGiven.detailStudiedCourses;
+        dataAfterReplacement = testUtils.dataGiven.dataAfterReplacement;
+        southHarmonBaseline  = testUtils.dataGiven.southHarmonBaseline;
+        scheduleDataProvider = new ScheduleDataProvider(new CreditCalculator());
     });
 
     afterEach(function() {
 
-        //southHarmonSchoolReport      = null;
-        //detailStudiedCourses         = null;
-        //detailStudiedSocialPractices = null;
-        //dataAfterReplacement         = null;
-        //southHarmonBaseline          = null;
+        detailStudiedCourses = null;
+        dataAfterReplacement = null;
+        southHarmonBaseline  = null;
+        scheduleDataProvider = null;
     });
 
 
@@ -59,33 +55,14 @@ describe('schedule data provider spec', function() {
     });
 
 
-    it('should fetch correct converted credits of studied social practices ', function() {
-
-        // TODO use sinon mock
-        // mock SouthHarmonReplacementRule
-        function SouthHarmonReplacementRule() {}
-        SouthHarmonReplacementRule.prototype.replace = function(studiedCoursesBeforeReplace, passSocialPractices) {
-            return testUtils.dataGiven.dataAfterReplacement;
-
-        };
-
-        // mock ReplacementRuleFactory
-        function ReplacementRuleFactory() {}
-        ReplacementRuleFactory.createReplacementRule = function(college) {
-            return new SouthHarmonReplacementRule();
-        };
-
-
-        var replacementRule      = ReplacementRuleFactory.createReplacementRule(southHarmonSchoolReport.college);
-        var detailCreditsInfo    = scheduleDataProvider.fetchDetailCreditsInfo(replacementRule, detailStudiedCourses, detailStudiedSocialPractices);
+    it('should fetch correct credits after display rule handle', function() {
 
         var expectResult = {
-            convertedSocialPracticeCredits : { obligatory: 2, elective: 2 },
-            totalCredits                   : { obligatory: 6, elective: 4 },
-            shortageCredits                : {}
+            courseCredits                 : {obligatory: 4, elective: 2},
+            convertedSocialPracticeCredits: {obligatory: 2, elective: 2}
         };
-
-        detailCreditsInfo.should.eql(expectResult);
+        scheduleDataProvider.fetchCreditsAfterDisplayRuleHandle(new DisplayWithSocialPracticeNotCovertIntoCourseRule(), detailStudiedCourses, dataAfterReplacement)
+            .should.eql(expectResult);
     });
 
 });

@@ -2,6 +2,6 @@
 
 function DisplayRule() {}
 
-DisplayRule.prototype.generateDisplayData = function() {};
+DisplayRule.prototype.generateDisplayData = function(creditCalculator, studiedCourses, dataAfterReplacement) {};
 
 module.exports = DisplayRule;
